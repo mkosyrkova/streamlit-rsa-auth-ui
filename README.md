@@ -10,7 +10,9 @@
 Encryption on Authenticate widget data from client to server.
 
 ## What is Streamlit RSA Authenticator UI?
+
 ### What is Http protocol
+
 Http is the information transfer protocol between networked devices. However, all the requests and responses are in plaintext, which means that anyone can read them.
 
 If you want to deploy streamlit server using http protocol (not https protocol) and you add the user authentication, user password can be read by anyone in the network as it is the plaintext for http protocol.
@@ -18,23 +20,27 @@ If you want to deploy streamlit server using http protocol (not https protocol) 
 `streamlit-rsa-auth-ui` correct it by encrypting user information including password at the client browser before transmit to streamlit server using [RSA algorithm](https://www.techtarget.com/searchsecurity/definition/RSA)
 
 ### What is RSA algorithm
+
 It is [asymmetric cryptography](https://www.techtarget.com/searchsecurity/definition/asymmetric-cryptography), uses two different but mathematically linked [keys](https://www.techtarget.com/searchsecurity/definition/key)
+
 - [Public key](https://www.techtarget.com/searchsecurity/definition/public-key) that can be share with everyone
 - [Private key](https://www.techtarget.com/searchsecurity/definition/private-key) must be kept secret
 
 ## Installation
+
 Open a terminal and run:
 
-``` terminal
+```terminal
 pip install streamlit-rsa-auth-ui
 ```
 
-
 ## Quickstart
+
 ### Gnerate RSA Key Pair
+
 Create a new file generateKeys.py
 
-``` python
+```python
 from streamlit_rsa_auth_ui import Encryptor
 
 encryptor = Encryptor.generateNew(2048)
@@ -42,23 +48,27 @@ encryptor.save('rsa', 'authkey')
 ```
 
 Run `generateKeys.py` python script
-``` terminal
+
+```terminal
 python generateKeys.py
 ```
 
 this will create a private key and public key pair
+
 - private key with the file name `authkey`
 - public key with the file name `authkey.pub`
 
-``` md
+```md
 ├── rsa
-│   ├── authkey
-│   │   authkey.pub
+│ ├── authkey
+│ │ authkey.pub
 ```
 
 ### Create streamlit page
+
 Create a new file example.py
-``` python
+
+```python
 import streamlit as st
 from streamlit_rsa_auth_ui import Encryptor, authUI, SigninEvent, SigninFormConfig, getEvent
 ss = st.session_state
@@ -98,34 +108,48 @@ button
 ```
 
 Run the streamlit app
-``` terminal
+
+```terminal
 streamlit run example.py
 ```
 
-
 ## Change Log
+
 ### Version 0.0.1
+
 - Initial release
+
 ### Version 0.0.2
+
 - Fix missing frontend issue
+
 ### Version 0.0.3
+
 - Optional 'cancel' button to signoutform
 - Minor bug fixed
 - Remove bootstrap.min.css warning
+
 ### Version 0.0.4
+
 - Remove location setting(seem redundunt as if you want to add to any container/sidebar you can call with syntax)
 - Add in classname to frontend so that easier to add in custom styling if needed
 - Remove off the unnecessary excess height of streamlit
+
 ### Version 1.0.0
+
 - More customizable UI
 - Add inline mode
 - Add ChangePassword UI
+
 ### Version 1.1.0
+
 - Add id property in event if no public key is provided
 - Add AuthUI class
 - Add Configs class
 
+### Version 1.1.1
 
+- Fix 'no remember in signinevent' when remember option is disabled
 
 [pypi_badge]: https://img.shields.io/pypi/v/streamlit-rsa-auth-ui.svg
 [pypi_link]: https://pypi.org/project/streamlit-rsa-auth-ui

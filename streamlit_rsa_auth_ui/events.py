@@ -1,8 +1,8 @@
 # Author    : Nathan Chen
-# Date      : 20-Mar-2024
+# Date      : 08-Apr-2024
 
 
-from typing import Literal
+from typing import Literal, Dict
 
 
 EventInfo = Literal['signin', 'cancelSignin', 'signout', 'cancelSignout', 'changePassword', 'cancelChangePassword']
@@ -14,6 +14,10 @@ class Event:
     def __init__(self, event: EventInfo) -> None:
         self.event = event
 
+    def setattr(self, dict: Dict):
+        for key, val in dict.items():
+            self.__setattr__(key, val)
+
 
 class SigninEvent(Event):
     event: EventInfo = 'signin'
@@ -23,6 +27,7 @@ class SigninEvent(Event):
 
     def __init__(self) -> None:
         super().__init__('signin')
+        self.remember = False
 
 class CancelSigninEvent(Event):
     event: EventInfo = 'cancelSignin'
@@ -62,7 +67,7 @@ def getEvent(value):
     info: EventInfo = value.get('event', None)
     if info == SigninEvent.event:
         event = SigninEvent()
-        event.__dict__ = value
+        event.setattr(value)
     elif info == CancelSigninEvent.event:
         event = CancelSignoutEvent()
     elif info == SignoutEvent.event:
@@ -71,7 +76,7 @@ def getEvent(value):
         event = CancelSignoutEvent()
     elif info == ChangePasswordEvent.event:
         event = ChangePasswordEvent()
-        event.__dict__ = value
+        event.setattr(value)
     elif info == CancelChangePasswordEvent.event:
         event = CancelChangePasswordEvent()
     else:
