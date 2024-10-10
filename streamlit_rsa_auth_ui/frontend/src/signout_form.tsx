@@ -23,7 +23,7 @@ const getConfigs = (configs: any): FormConfig => {
   const formConfigs = getFormConfig(form, {
     type: FormType.default,
     title: {text: "Welcome"},
-    submit: {label: '🔐 Sign Out'},
+    submit: {label: '🔐 Выйти'},
   })
   return formConfigs
 }

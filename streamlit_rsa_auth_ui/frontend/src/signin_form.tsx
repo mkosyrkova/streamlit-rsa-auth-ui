@@ -41,21 +41,21 @@ const getConfigs = (configs: any): Configs => {
   const formConfigs = getFormConfig(form, {
     type: FormType.default,
     title: {text: 'Login'},
-    submit: {label: '🔑 Sign In'}
+    submit: {label: '🔑 Войти'}
   })
   return{
     username: getInputConfig(username, {
-      placeholder: 'Username',
+      placeholder: 'Логин',
       width: '100%',
       required: { required: true }
     }),
     password: getInputConfig(password, {
-      placeholder: 'Password',
+      placeholder: 'Пароль',
       width: '100%',
       required: { required: true }
     }),
-    remember: remember && getCheckboxConfig(remember, {label: 'Remember me'}),
-    forgot: forgot && getButtonConfig(forgot, {label: 'Forgot password'}),
+    remember: remember && getCheckboxConfig(remember, {label: 'Запомни меня'}),
+    forgot: forgot && getButtonConfig(forgot, {label: 'Не помню пароль'}),
     ...formConfigs
   }
 }
