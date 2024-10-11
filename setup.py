@@ -16,7 +16,7 @@ setup(
     description='Streamlit RSA Authenticator UI',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/NathanChen198/streamlit-rsa-auth-ui',
+    url='https://github.com/mkosyrkova/streamlit-rsa-auth-ui',
     packages=find_packages(),
     include_package_data=True,
     classifiers=[
